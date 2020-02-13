@@ -1,0 +1,40 @@
+version: '3.4'
+services:
+  netbox:
+    image: netboxcommunity/netbox:${VERSION-v2.7}
+    depends_on:
+    - postgres
+    environment:
+      CORS_ORIGIN_ALLOW_ALL: "true"
+      DB_NAME: netbox
+      DB_USER: netbox
+      DB_PASSWORD: netbox
+      DB_HOST: postgres
+      NAPALM_USERNAME:
+      NAPALM_PASSWORD:
+      NAPALM_TIMEOUT: 10
+      MAX_PAGE_SIZE: 1000
+      SECRET_KEY: "7T/k5Sol+SpOESJ3cLlTIR2l26QxeRf5svG1NNBPgMSscOXZWkUpNjL//koyZGgf"
+      SKIP_STARTUP_SCRIPTS: "true"
+      SKIP_SUPERUSER: "false"
+      SUPERUSER_NAME: admin
+      SUPERUSER_EMAIL: admin@example.com
+      SUPERUSER_PASSWORD: admin
+      SUPERUSER_API_TOKEN: 0123456789abcdef0123456789abcdef01234567
+      WEBHOOKS_ENABLED: "true"
+    user: '101'
+    command: "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 127.0.0.1:8000:8000
+
+  postgres:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: netbox
+      POSTGRES_PASSWORD: netbox
+      POSTGRES_DB: netbox
+    volumes:
+    - netbox-postgres-data:/var/lib/postgresql/data
+volumes:
+  netbox-postgres-data:
+    driver: local
