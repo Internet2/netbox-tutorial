@@ -8,7 +8,7 @@ services:
       - netbox-database
     command: "python manage.py runserver 0.0.0.0:8000"
     environment:
-      DEBUG: "false"
+      DEBUG: "true"
       SECRET_KEY: 12345
       DB_NAME: netbox
       DB_USER: netbox
@@ -18,6 +18,7 @@ services:
       SUPERUSER_PASSWORD: admin
       SUPERUSER_API_TOKEN: 0123456789abcdef0123456789abcdef01234567
       SKIP_STARTUP_SCRIPTS: "true"
+      LOGIN_REQUIRED: "true"
     ports:
       - 127.0.0.1:8000:8000
 
