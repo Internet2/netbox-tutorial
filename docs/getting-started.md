@@ -63,3 +63,6 @@ $ docker-compose logs -f
 Press `Ctrl-C` to exit the log command.
 
 The services will taka a few minutes to spin up, when they are finished, the NetBox interface should be available from your machine at <http://localhost:9797/>.
+
+
+See [Shutting down and cleaning up]({% link clean-up.md %}) for commands to turn off and remove these services.
