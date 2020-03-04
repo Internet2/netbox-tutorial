@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  nginx:
+    ports:
+      - 127.0.0.1:9797:8080
+  netbox:
+    volumes:
+      - ../initializers:/opt/netbox/initializers:z,ro
